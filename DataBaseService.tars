@@ -1,0 +1,20 @@
+#include "StatusCode.tars"
+
+module RentHouse
+{
+
+    struct User {
+        0 require string name;
+        1 require string gender;
+        2 require string avatar_url;
+        3 require string last_login_time;
+        4 require string role;
+    };
+
+    interface DataBaseService {
+        int hasUser(string name, out bool userExist);
+        int login(string name, string password, string login_time, out int user_id, out User user, out StatusCode status);
+        // 创建用户。创建时，role 默认值为 normal
+        int createUser(string name, string password, string gender, string avatar_url, string login_time, out int user_id, out User user, out StatusCode status);
+    };
+};
